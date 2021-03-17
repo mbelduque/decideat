@@ -1,49 +1,25 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { StyleSheet, Image } from "react-native";
+import RegisterForm from "../../components/account/RegisterForm";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Register() {
   return (
-    <View style={styles.form}>
-      <Input containerStyle={styles.input} placeholder="Ingresa tu email" />
-      <Input
-        placeholder="Ingresa tu contraseña"
-        containerStyle={styles.input}
-        password={true}
-        secureTextEntry={true}
+    <KeyboardAwareScrollView>
+      <Image
+        source={require("../../assets/large_datahungry.png")}
+        resizeMode="contain"
+        style={styles.image}
       />
-      <Input
-        placeholder="Confirma tu contraseña"
-        containerStyle={styles.input}
-        password={true}
-        secureTextEntry={true}
-      />
-      <Button
-        title="Registrar nuevo usuario"
-        containerStyle={styles.btnContainer}
-        buttonStyle={styles.button}
-      />
-    </View>
+      <RegisterForm />
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  form: {
-    marginTop: 30,
-    padding: 20,
-  },
-
-  input: {
+  image: {
+    height: 150,
     width: "100%",
-  },
-
-  btnContainer: {
-    marginTop: 20,
-    width: "90%",
-    alignSelf: "center",
-  },
-
-  button: {
-    backgroundColor: "#f36b24",
+    marginBottom: 20,
   },
 });
