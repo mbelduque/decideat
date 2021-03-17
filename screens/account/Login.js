@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Divider } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
   return (
@@ -20,10 +21,19 @@ export default function Login() {
 }
 
 function CreateAccount(props) {
+  const navigation = useNavigation();
   return (
-    <Text style={styles.register} onPress={() => console.log("registrar")}>
+    <Text
+      style={styles.register}
+      onPress={() => navigation.navigate("register")}
+    >
       ¿Aún no tienes una cuenta?{" "}
-      <Text style={styles.btnRegister}>Regístrate</Text>
+      <Text
+        style={styles.btnRegister}
+        onPress={() => navigation.navigate("register")}
+      >
+        Regístrate
+      </Text>
     </Text>
   );
 }
