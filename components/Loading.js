@@ -24,9 +24,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 200,
     backgroundColor: "#fff",
-    borderColor: "#bb4c1c",
-    borderWidth: 2,
-    borderRadius: 10,
+    borderRadius: 5,
   },
 
   view: {
