@@ -11,3 +11,21 @@ export const isUserLogged = () => {
   });
   return isLogged;
 };
+
+export const getCurrentUser = () => {
+  return firebase.auth().currentUser;
+};
+
+export const logout = () => {
+  return firebase.auth().signOut();
+};
+
+export const registerUser = async (email, password) => {
+  const result = { statusResponse: true, error: null };
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password);
+  } catch (error) {
+    result.error = "Este email ya ha sido registrado";
+  }
+  return result;
+};
