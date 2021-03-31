@@ -1,33 +1,86 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
+import { size } from "lodash";
+
+import { validateEmail } from "../../utils/helpers";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState("");
-
-  const defaultFormValues = () => {
-    return { email: "", password: "", confirm: "" };
-  };
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [errorConfirm, setErrorConfirm] = useState("");
 
   const onChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
+  };
+
+  const registerUser = () => {
+    if (!validateData()) {
+      return;
+    }
+    console.log("entró");
+  };
+
+  const validateData = () => {
+    setErrorEmail("");
+    setErrorPassword("");
+    setErrorConfirm("");
+    let isValid = true;
+    if (!validateEmail(formData.email)) {
+      setErrorEmail("Debes ingresar un email válido");
+      isValid = false;
+    }
+    if (size(formData.password) < 6) {
+      setErrorPassword("Debes ingresar una contraseña de almenos 6 carácteres");
+      isValid = false;
+    }
+    if (size(formData.confirm) < 6) {
+      setErrorConfirm(
+        "Debes ingresar una confirmación de almenos 6 carácteres"
+      );
+      isValid = false;
+    }
+    if (formData.password != formData.confirm) {
+      setErrorConfirm("La contraseña de confirmación no coincide");
+      isValid = false;
+    }
+    return isValid;
   };
 
   return (
     <View style={styles.form}>
       <Input
         containerStyle={styles.input}
-        placeholder="Ingresa tu email"
-        onChange={(e) => onChange(e, "email")}
+        placeholder="email@direccion.com"
         keyboardType="email-address"
+        onChange={(e) => onChange(e, "email")}
+        errorMessage={errorEmail}
+        defaultValue={formData.email}
+        leftIcon={
+          <Icon
+            type="material-community"
+            name={"email"}
+            iconStyle={styles.icon}
+          />
+        }
       />
       <Input
-        placeholder="Ingresa tu contraseña"
+        placeholder="Contraseña"
         containerStyle={styles.input}
         password={true}
         secureTextEntry={!showPassword}
         onChange={(e) => onChange(e, "password")}
+        errorMessage={errorPassword}
+        defaultValue={formData.password}
+        leftIcon={
+          <Icon
+            type="material-community"
+            name={"lock"}
+            iconStyle={styles.icon}
+          />
+        }
         rightIcon={
           <Icon
             type="material-community"
@@ -38,11 +91,20 @@ export default function RegisterForm() {
         }
       />
       <Input
-        placeholder="Confirma tu contraseña"
+        placeholder="Confirmar contraseña"
         containerStyle={styles.input}
         password={true}
         secureTextEntry={!showPassword}
         onChange={(e) => onChange(e, "confirm")}
+        errorMessage={errorConfirm}
+        defaultValue={formData.confirm}
+        leftIcon={
+          <Icon
+            type="material-community"
+            name={"lock"}
+            iconStyle={styles.icon}
+          />
+        }
         rightIcon={
           <Icon
             type="material-community"
@@ -56,7 +118,7 @@ export default function RegisterForm() {
         title="Registrar nuevo usuario"
         containerStyle={styles.btnContainer}
         buttonStyle={styles.button}
-        onPress={() => console.log(formData)}
+        onPress={() => registerUser()}
       />
     </View>
   );
@@ -69,6 +131,7 @@ const styles = StyleSheet.create({
 
   input: {
     width: "100%",
+    borderStartColor: "#f36b24",
   },
 
   btnContainer: {
