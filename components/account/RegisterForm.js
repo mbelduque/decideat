@@ -15,6 +15,7 @@ export default function RegisterForm() {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirm, setErrorConfirm] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigation = useNavigation();
 
   const onChange = (e, type) => {

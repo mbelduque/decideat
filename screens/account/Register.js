@@ -7,7 +7,7 @@ export default function Register() {
   return (
     <KeyboardAwareScrollView>
       <Image
-        source={require("../../assets/large_datahungry.png")}
+        source={require("../../assets/logo.png")}
         resizeMode="contain"
         style={styles.image}
       />
@@ -18,8 +18,9 @@ export default function Register() {
 
 const styles = StyleSheet.create({
   image: {
-    height: 150,
-    width: "100%",
+    height: 90,
+    width: "35%",
+    marginTop: "25%",
     marginBottom: 20,
   },
 });
