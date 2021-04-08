@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
 import { size } from "lodash";
 import { useNavigation } from "@react-navigation/native";
@@ -127,8 +127,16 @@ export default function RegisterForm() {
           />
         }
       />
+      <Text style={styles.acept}>
+        <Image
+          source={require("../../assets/checked.png")}
+          style={styles.image}
+        />
+        &nbsp; Aceptar{" "}
+        <Text style={styles.conditions}>Terminos &#38; Condiciones</Text>
+      </Text>
       <Button
-        title="Registrar nuevo usuario"
+        title="Crear cuenta"
         containerStyle={styles.btnContainer}
         buttonStyle={styles.button}
         onPress={() => doRegisterUser()}
@@ -149,8 +157,8 @@ const styles = StyleSheet.create({
   },
 
   btnContainer: {
-    marginTop: 20,
-    width: "90%",
+    marginTop: 55,
+    width: "50%",
     alignSelf: "center",
   },
 
@@ -160,5 +168,18 @@ const styles = StyleSheet.create({
 
   icon: {
     color: "#a7a7a7",
+  },
+
+  acept: {
+    alignSelf: "center",
+    fontWeight: "bold",
+    color: "#000000",
+    marginTop: 20,
+  },
+
+  conditions: {
+    alignSelf: "center",
+    fontWeight: "bold",
+    color: "#f36b24",
   },
 });
