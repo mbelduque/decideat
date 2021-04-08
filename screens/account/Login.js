@@ -3,6 +3,8 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Divider } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
+import LoginForm from "../../components/account/LoginForm";
+
 export default function Login() {
   return (
     <ScrollView>
@@ -12,10 +14,10 @@ export default function Login() {
         style={styles.image}
       />
       <View style={styles.container}>
-        <Text>Login Form</Text>
+        <LoginForm />
+        <Divider style={styles.divider} />
         <CreateAccount />
       </View>
-      <Divider style={styles.divider} />
     </ScrollView>
   );
 }
@@ -27,7 +29,8 @@ function CreateAccount(props) {
       style={styles.register}
       onPress={() => navigation.navigate("register")}
     >
-      ¿Aún no tienes una cuenta?{" "}
+      <Image source={require("../../assets/checked.png")} />
+      &nbsp; ¿Aún no tienes una cuenta?{" "}
       <Text
         style={styles.btnRegister}
         onPress={() => navigation.navigate("register")}
@@ -55,8 +58,8 @@ const styles = StyleSheet.create({
   },
 
   register: {
-    marginTop: 15,
     marginHorizontal: 10,
+    fontWeight: "bold",
     alignSelf: "center",
   },
 
