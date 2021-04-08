@@ -10,7 +10,7 @@ import Loading from "../Loading";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState("");
+  const [formData, setFormData] = useState(defaultFormValues());
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirm, setErrorConfirm] = useState("");
@@ -128,10 +128,7 @@ export default function RegisterForm() {
         }
       />
       <Text style={styles.acept}>
-        <Image
-          source={require("../../assets/checked.png")}
-          style={styles.image}
-        />
+        <Image source={require("../../assets/checked.png")} />
         &nbsp; Aceptar{" "}
         <Text style={styles.conditions}>Terminos &#38; Condiciones</Text>
       </Text>
@@ -145,6 +142,10 @@ export default function RegisterForm() {
     </View>
   );
 }
+
+const defaultFormValues = () => {
+  return { email: "", password: "", confirm: "" };
+};
 
 const styles = StyleSheet.create({
   form: {
