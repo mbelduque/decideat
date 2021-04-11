@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
-import { size } from "lodash";
 import { useNavigation } from "@react-navigation/native";
+import { size } from "lodash";
 
-import { validateEmail } from "../../utils/helpers";
 import { registerUser } from "../../utils/actions";
+import { validateEmail } from "../../utils/helpers";
 import Loading from "../Loading";
 
 export default function RegisterForm() {

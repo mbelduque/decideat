@@ -4,9 +4,9 @@ import { Button, Icon, Input } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { isEmpty } from "lodash";
 
-import Loading from "../Loading";
-import { validateEmail } from "../../utils/helpers";
 import { loginWithEmailAndPassword } from "../../utils/actions";
+import { validateEmail } from "../../utils/helpers";
+import Loading from "../Loading";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
