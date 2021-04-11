@@ -2,12 +2,13 @@ import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Divider } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import LoginForm from "../../components/account/LoginForm";
 
 export default function Login() {
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView>
       <Image
         source={require("../../assets/large_datahungry.png")}
         resizeMode="contain"
@@ -18,7 +19,7 @@ export default function Login() {
         <Divider style={styles.divider} />
         <CreateAccount />
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
